@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/data/category_data.dart';
-import 'package:news_app/widget/category_card.dart';
-import 'package:news_app/widget/category_list.dart';
-import 'package:news_app/widget/news_list_card.dart';
-
-class HomeView extends StatelessWidget {
+ import 'package:news_app/widget/NewsList/get_news_data.dart';
+import 'package:news_app/widget/category/category_list.dart';
+ 
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +33,12 @@ class HomeView extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: Column(
-        children: [
-          const SizedBox(child: CategoryList()),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: NewsList(),
-                );
-              },
-            ),
+      body: const CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: CategoryList(),
           ),
+          GetNewsList(category: 'general'),
         ],
       ),
     );

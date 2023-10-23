@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/data/category_data.dart';
-import 'package:news_app/widget/category_card.dart';
-
+import 'package:news_app/widget/category/category_card.dart';
+ 
 class CategoryList extends StatelessWidget {
   const CategoryList({
     super.key,
@@ -17,7 +17,7 @@ class CategoryList extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             itemBuilder: (context, index) {
-              return CardWidget(
+              return CategoryCard(
                 category: categories[index],
               );
             },
